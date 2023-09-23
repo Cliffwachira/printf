@@ -1,7 +1,9 @@
 #include "main.h"
+
+/****************** PRINT POINTER ******************/
 /**
  * print_pointer - Prints the value of a pointer variable
- * @types: List  of arguments
+ * @types: List a of arguments
  * @buffer: Buffer array to handle print
  *
  * @flags:  Calculates active flags
@@ -41,17 +43,17 @@ int print_pointer(va_list types, char buffer[],
 	if ((flags & F_ZERO) && !(flags & F_MINUS))
 		padd = '0';
 	if (flags & F_PLUS)
-		extra_d = '+', length++;
+		extra_c = '+', length++;
 	else if (flags & F_SPACE)
-		extra_d = ' ', length++;
+		extra_c = ' ', length++;
 
 	ind++;
 
 	/*return (write(1, &buffer[i], BUFF_SIZE - i - 1));*/
 	return (write_pointer(buffer, ind, length,
-		width, flags, padd, extra_d, padd_start));
+		width, flags, padd, extra_c, padd_start));
 }
-
+/************************* PRINT NON PRINTABLE *************************/
 /**
  * print_non_printable - Prints ascii codes in hexa of non printable chars
  * @types: Lista of arguments
@@ -126,11 +128,11 @@ int print_reverse(va_list types, char buffer[],
 	for (j = 0; str[j]; j++)
 		;
 
-	for (i = j - 1; j >= 0; j--)
+	for (j = j - 1; j >= 0; j--)
 	{
-		char y = str[j];
+		char z = str[j];
 
-		write(1, &y, 1);
+		write(1, &z, 1);
 		count++;
 	}
 	return (count);
@@ -149,7 +151,7 @@ int print_reverse(va_list types, char buffer[],
 int print_rot13string(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	char k;
+	char x;
 	char *str;
 	unsigned int j, o;
 	int count = 0;
@@ -171,16 +173,16 @@ int print_rot13string(va_list types, char buffer[],
 		{
 			if (in[o] == str[j])
 			{
-				k = out[o];
-				write(1, &k, 1);
+				x = out[o];
+				write(1, &x, 1);
 				count++;
 				break;
 			}
 		}
 		if (!in[o])
 		{
-			k = str[j];
-			write(1, &k, 1);
+			x = str[j];
+			write(1, &x, 1);
 			count++;
 		}
 	}

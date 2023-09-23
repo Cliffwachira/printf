@@ -7,7 +7,7 @@
  * Return: width
  */
 
-int to_get_width(const char *format, int *j, va_list list)
+int to_get_width(const char *format, int *j, va_list list_of_args)
 {
 	int curr_j;
 	int width = 0;
@@ -22,7 +22,7 @@ int to_get_width(const char *format, int *j, va_list list)
 		else if (format[curr_j] == '*')
 		{
 			curr_j++;
-			width = va_arg(list, int);
+			width = va_arg(list_of_args, int);
 			break;
 		}
 		else

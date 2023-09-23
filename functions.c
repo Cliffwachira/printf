@@ -17,6 +17,7 @@ int print_char(va_list types, char buffer[],
 
 	return (handle_write_char(d, buffer, flags, width, precision, size));
 }
+
 /**
  * print_string - Prints a string
  * @types: List a of arguments
@@ -112,20 +113,20 @@ int print_int(va_list types, char buffer[],
 {
 	int j = BUFF_SIZE - 2;
 	int is_negative = 0;
-	long int m = va_arg(types, long int);
+	long int n = va_arg(types, long int);
 	unsigned long int num;
 
-	m = convert_size_number(n, size);
+	n = convert_size_number(n, size);
 
-	if (m == 0)
+	if (n == 0)
 		buffer[j--] = '0';
 
 	buffer[BUFF_SIZE - 1] = '\0';
 	num = (unsigned long int)n;
 
-	if (m < 0)
+	if (n < 0)
 	{
-		num = (unsigned long int)((-1) * m);
+		num = (unsigned long int)((-1) * n);
 		is_negative = 1;
 	}
 
@@ -137,27 +138,27 @@ int print_int(va_list types, char buffer[],
 
 	j++;
 
-	return (write_number(is_negative, i, buffer, flags, width, precision, size));
+	return (write_number(is_negative, j, buffer, flags, width, precision, size));
 }
 
 /**
  * print_binary - Prints an unsigned number
- * @types: List of arguments
+ * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  *
- * @flags:works out active flags
- * @width: obtain width.
+ * @flags:  Calculates active flags
+ * @width: get width.
  * @precision: Precision specification
  * @size: Size specifier
  *
- * Return: No.s of char printed.
+ * Return: Numbers of char printed.
  */
 
 int print_binary(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	unsigned int m, x, j, sum;
-	unsigned int b[32];
+	unsigned int n, m, j, sum;
+	unsigned int a[32];
 	int count;
 
 	UNUSED(buffer);
@@ -166,22 +167,22 @@ int print_binary(va_list types, char buffer[],
 	UNUSED(precision);
 	UNUSED(size);
 
-	m = va_arg(types, unsigned int);
-	x = 2147483648; /* (2 ^ 31) */
-	b[0] = m / x;
+	n = va_arg(types, unsigned int);
+	m = 2147483648; /* (2 ^ 31) */
+	a[0] = n / m;
 	for (j = 1; j < 32; j++)
 	{
-		x /= 2;
-		b[j] = (m / x) % 2;
+		m /= 2;
+		a[j] = (n / m) % 2;
 	}
 	for (j = 0, sum = 0, count = 0; j < 32; j++)
 	{
-		sum += b[j];
+		sum += a[j];
 		if (sum || j == 31)
 		{
-			char y = '0' + b[j];
+			char z = '0' + a[j];
 
-			write(1, &y, 1);
+			write(1, &z, 1);
 			count++;
 		}
 	}

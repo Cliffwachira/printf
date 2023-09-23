@@ -1,8 +1,9 @@
 #include "main.h"
 
+
 /**
  * print_unsigned - Prints an unsigned number.
- * @types: List a of arguments
+ * @types: List of arguments
  *
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
@@ -74,7 +75,7 @@ int print_octal(va_list types, char buffer[],
 	}
 
 	if (flags & F_HASH && init_num != 0)
-		buffer[i--] = '0';
+		buffer[j--] = '0';
 
 	j++;
 
